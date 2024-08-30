@@ -225,7 +225,7 @@
           <clipPath id="a"><path fill="#fff" d="M0 0h982v239H0z" /></clipPath>
         </defs>
       </svg>
-      <h1>Hello, {{ title }}</h1>
+      <h1>Hello</h1>
       <p>Congratulations! Your app is running. 🎉</p>
     </div>
     <div class="divider" role="separator" aria-label="Divider"></div>
@@ -324,6 +324,43 @@
   </div>
 </main>
 
+<div class="form-group">
+  <input [(ngModel)]="searchText" placeholder="Buscar por los primeros 3 caracteres..." class="form-control mb-3">
+</div>
+<table class="table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Document Type</th>
+      <th>Document Number</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>Country</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of data | paginate: { itemsPerPage: pageSize, currentPage: page } | filter: searchText">
+      <td>{{ item.id }}</td>
+      <td>{{ item.first_name }}</td>
+      <td>{{ item.last_name }}</td>
+      <td>{{ item.document_type }}</td>
+      <td>{{ item.document_number }}</td>
+      <td>{{ item.email }}</td>
+      <td>{{ item.phone }}</td>
+      <td>{{ item.country }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="btn-group mb-3">
+  <pagination-controls (pageChange)="onPageChange($event)"></pagination-controls>
+  <button (click)="changePageSize(10)" class="btn btn-primary">10</button>
+  <button (click)="changePageSize(50)" class="btn btn-secondary">50</button>
+  <button (click)="changePageSize(100)" class="btn btn-secondary">100</button>
+</div>
+
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 <!-- * * * * * * * * * * * The content above * * * * * * * * * * * * -->
 <!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * * -->
@@ -333,4 +370,4 @@
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 
 
-<router-outlet />
+
