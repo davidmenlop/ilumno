@@ -24,7 +24,7 @@ COPY --from=build /app/dist/ilumno/browser /usr/share/nginx/html
 COPY nginx.conf /etc/nginx/nginx.conf
 
 # Expone el puerto 80 para el tráfico HTTP
-EXPOSE 80
+EXPOSE 4000
 
 # Comando para iniciar Nginx
 CMD ["nginx", "-g", "daemon off;"]
